@@ -1,0 +1,113 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Jayoung Kim
+    - name: Affiliation
+      value: KRAFTON School of Computing, KAIST
+    - name: Location
+      value: Daejeon, South Korea
+    - name: Email
+      value: jayoung.kim@kaist.ac.kr
+
+- title: Research Interests
+  type: nested_list
+  contents:
+    - title: Tabular Data
+      items:
+        - Generation, representation learning, and foundation models for tabular data
+        - In-context learning approaches for tabular data generation
+    - title: Trustworthy ML
+      items:
+        - Data privacy
+        - Adversarial robustness
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D. in School of Computing
+      institution: Korea Advanced Institute of Science and Technology (KAIST)
+      year: 2024 - Present
+      description:
+        - "Adviser: Prof. Noseong Park"
+    - title: M.S. in Artificial Intelligence
+      institution: Yonsei University, Seoul, South Korea
+      year: 2021 - 2024
+      description:
+        - "Adviser: Prof. Noseong Park"
+        - "Thesis: STaSy: Score-based Tabular Data Synthesis"
+        - "Overall GPA: 4.19 / 4.3"
+    - title: B.S. in Computer Science and Statistics
+      institution: Sookmyung Women's University, Seoul, South Korea
+      year: 2016 - 2021
+      description:
+        - "Overall GPA: 3.97 / 4.5"
+
+- title: Patents
+  type: time_table
+  contents:
+    - title: Neural ODE-based Conditional Tabular Data Adversarial Generative Neural Network Apparatus and Method
+      year: 2025
+      description:
+        - "Granted — Korean Patent No. 10-2839821 (Registered Jul 2025)"
+        - "Also filed in the U.S. (No. 17/564,870) and Japan (No. 2021-215113)"
+        - "Inventors: Noseong Park, Jayoung Kim, Jinsung Jeon, Jaehoon Lee, Jihyeon Hyeong"
+    - title: Time-series Analysis Method and Apparatus using Extrapolation and Interpolation-based Neural Controlled Differential Equations
+      year: 2022
+      description:
+        - "Filed — Korean Patent Application No. 10-2022-0180315 (Dec 2022)"
+
+- title: Selected Projects
+  type: time_table
+  contents:
+    - title: Approximate Query DBMS for Big Data Exploratory Analysis
+      year: 2021 - 2024
+      description:
+        - "Collaborative research project with ETRI"
+        - "Developed synopsis structures using table generative models for fast query processing on large-scale data"
+        - "Designed continual learning-based methods to update synopses efficiently"
+        - "Resulted in publications at ICML, ICLR, and CIKM"
+    - title: Collaborative Research with Samsung SDS
+      year: 2021 - 2023
+      description:
+        - "Proposed generative models for table synthesis and oversampling strategies"
+        - "Resulted in a publication at KDD 2021"
+
+- title: Invited Talks
+  type: time_table
+  contents:
+    - title: Tutorial on Graph Neural Networks and Generative Models
+      institution: KSIAM Winter AI Tutorial
+      year: 2023
+    - title: Invited Talk on Tabular Data Generation
+      institution: Data Systems Lab, POSTECH
+      year: 2023
+
+- title: Awards
+  type: time_table
+  contents:
+    - title: Excellent Paper Award
+      institution: '1st Yonsei AI Workshop ("SOS: Score-based Oversampling for Tabular Data")'
+      year: 2022
+
+- title: Academic Service
+  type: nested_list
+  contents:
+    - title: Reviewer
+      items:
+        - "ICML (2026)"
+        - "ICLR (2024-2026)"
+        - "NeurIPS (2023-2025)"
+        - "TMLR (2025)"
+    - title: Teaching Assistant
+      items:
+        - "Machine Learning (Spring 2025, Spring 2026)"
+        - "Deep Learning Design Theory (Fall 2024)"
+        - "Algorithm Analysis (Fall 2021)"
+
+- title: Skills
+  type: list
+  contents:
+    - "<b>Programming:</b> Python"
+    - "<b>Deep Learning:</b> PyTorch, Mixed Precision Training, Multi-GPU Training"
+    - "<b>Tools:</b> Git, Weights & Biases, Linux"

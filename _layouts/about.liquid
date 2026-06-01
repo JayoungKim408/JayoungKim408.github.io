@@ -1,0 +1,130 @@
+---
+layout: default
+---
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+      {% if site.title == 'blank' %}
+        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
+        {{ site.last_name }}
+      {% else %}
+        {{ site.title }}
+      {% endif %}
+    </h1>
+    <p class="desc">{{ page.subtitle }}</p>
+    
+    <!-- Social icons below name -->
+    {% if page.social %}
+      <div class="social-header">
+        <div class="contact-icons-small">{% include social.liquid %}</div>
+      </div>
+    {% endif %}
+  </header>
+
+  <article>
+    {% if page.profile %}
+      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
+        {% if page.profile.image %}
+          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+          {% if page.profile.image_circular %}
+            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+          {% else %}
+            {% assign profile_image_class = 'img-fluid z-depth-1
+      rounded' %}
+          {% endif %}
+          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
+      30vw, 95vw"{% endcapture %}
+          {%
+            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
+            cache_bust=true
+          %}
+        {% endif %}
+        {% if page.profile.more_info %}
+          <div class="more-info">{{ page.profile.more_info }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% include about_sidebar.liquid %}
+
+    <div id="intro" class="about-bio clearfix">{{ content }}</div>
+
+    {% if page.ongoing_projects and page.ongoing_projects.items.size > 0 %}
+    <section class="ongoing-projects">
+      <h2 class="section-title">
+        <div style="height: 0.8em;"></div>
+        <span>{{ page.ongoing_projects.title }}</span>
+      </h2>
+      {% for item in page.ongoing_projects.items %}
+      <div class="ongoing-project-item">
+        <h3 class="ongoing-project-item-title">{{ item.title }}</h3>
+        {% if item.description %}
+        <p class="ongoing-project-item-desc">{{ item.description }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if page.news_section and page.news_section.items.size > 0 %}
+    <section id="news" class="news-section">
+      <h2 class="section-title">
+        <div style="height: 0.8em;"></div>
+        <span>{{ page.news_section.title }}</span>
+      </h2>
+      <ul class="news-list">
+        {% for item in page.news_section.items %}
+        <li class="news-item">
+          <div class="news-date">{{ item.date }}</div>
+          <div class="news-body">
+            {% if item.tag %}<span class="news-tag">{{ item.tag }}</span>{% endif %}
+            <span class="news-desc">{{ item.description | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <!-- News -->
+    {% if page.announcements and page.announcements.enabled %}
+      <h2>
+        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+      </h2>
+      {% include news.liquid limit=true %}
+    {% endif %}
+
+    <!-- Latest posts -->
+    {% if page.latest_posts and page.latest_posts.enabled %}
+      <h2>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+      </h2>
+      {% include latest_posts.liquid %}
+    {% endif %}
+
+    {% if page.selected_papers %}
+    <section id="publications" class="selected-publications">
+      <h2 class="section-title">
+        <div style="height: 0.8em;"></div>
+        <a href="{{ '/publications/' | relative_url }}">Selected publications</a>
+      </h2>
+      {% include selected_papers.liquid %}
+    </section>
+    {% endif %}
+
+    <!-- Social icons moved to header area -->
+    {% comment %}
+    {% if page.social %}
+      <div class="social">
+        <div class="contact-icons">{% include social.liquid %}</div>
+
+        <div class="contact-note">{{ site.contact_note }}</div>
+      </div>
+    {% endif %}
+    {% endcomment %}
+
+    {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
+      {% include newsletter.liquid center=true %}
+    {% endif %}
+  </article>
+</div>

@@ -1,0 +1,90 @@
+/*******************************************************************************
+ * Variables used throughout the theme.
+ * To adjust anything, simply edit the variables below and rebuild the theme.
+ ******************************************************************************/
+
+@use "sass:color";
+
+// =============================================================================
+// SITE PALETTES
+// -----------------------------------------------------------------------------
+// Named palettes are bound to the light/dark modes via _themes.scss. The active
+// palette is selected by `palette:` in _config.yml; the bindings below stay
+// available so any palette can be re-wired in without redefining colors.
+//   forest – blue point + cyan-green sub-point.
+//   sunset – purple point + peach/light-orange sub-point.
+//   oxford – Oxford Blue point + burgundy sub-point (active default).
+// The favicon swaps with the active palette × mode (see theme.js / head.liquid).
+// =============================================================================
+
+$forest-blue-color-dark: #29488d;
+$forest-blue-color-light: #4f68ce;
+$forest-light-point-color: #5681de;
+$forest-sub-point-color: #5bc5c5;
+
+$sunset-blue-color-dark: #4d2459;
+$sunset-blue-color-light: #5b2c6f;
+$sunset-light-point-color: #b05798;
+$sunset-sub-point-color: #e8b099;
+
+// Oxford – classic academic. Burgundy point + Oxford-Blue sub-point.
+// Light variant: lifted (not too dark) burgundy as main, navy as accent.
+// Dark variant: rose-burgundy point + slate-blue sub on dark bg.
+$oxford-blue-color-dark: #1a3a6c;
+$oxford-blue-color-light: #3d5a8a;
+$oxford-light-point-color: #9b2c3f; // light mode point (burgundy, main)
+$oxford-sub-point-color: #2e4a7a; // light mode sub-point (Oxford navy)
+$oxford-dark-point-color: #d97a8c; // dark mode point (rose burgundy, main)
+$oxford-dark-sub-point-color: #8aa6d9; // dark mode sub-point (light slate-blue)
+
+// Colors
+$red-color: #ff3636 !default;
+$red-color-dark: #b71c1c !default;
+$orange-color: #f29105 !default;
+$blue-color: #0076df !default;
+// Aliases default to the forest palette for any SCSS-time computations.
+// Per-theme overrides live in _themes.scss using the $forest-* / $sunset-* vars.
+$blue-color-dark: $forest-blue-color-dark !default;
+$blue-color-light: $forest-blue-color-light !default;
+$light-point-color: $forest-light-point-color !default;
+$cyan-color: #2bd0dc !default;
+$sub-point-color: $forest-sub-point-color !default;
+$light-cyan-color: color.adjust($cyan-color, $lightness: 25%);
+$green-color: #00ab37 !default;
+$green-color-lime: #b7d12a !default;
+$green-color-dark: #009f06 !default;
+$green-color-light: #ddffdd !default;
+$green-color-bright: #11d68b !default;
+$purple-color: #5b2c6f !default;
+$light-purple-color: color.adjust($purple-color, $lightness: 25%);
+$pink-color: #f92080 !default;
+$pink-color-light: #ffdddd !default;
+$yellow-color: #efcc00 !default;
+
+$grey-color: #828282 !default;
+$grey-color-light: color.adjust($grey-color, $lightness: 40%);
+$grey-color-dark: #1c1c1d;
+$grey-900: #212529;
+
+$white-color: #ffffff !default;
+$black-color: #201e1e !default;
+$card-bg-light: #effaf7 !default;
+
+// Theme colors
+
+$code-bg-color-light: #e5f2ef;
+$code-bg-color-dark: #2c3237 !default;
+
+// Font awesome location
+$fa-font-path: "../webfonts";
+
+// Tabler icons location
+$ti-font-path: "../fonts";
+
+// Back To Top button config
+$back-to-top-z-index: 10;
+$back-to-top-bottom: 30px;
+$back-to-top-right: 30px;
+$back-to-top-diameter: 40px;
+$back-to-top-height: $back-to-top-diameter;
+$back-to-top-width: $back-to-top-diameter;

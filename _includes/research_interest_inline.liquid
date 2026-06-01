@@ -1,0 +1,14 @@
+{% if page.research_interest %}
+<div class="research-interest">
+  <h2 class="research-interest-title">{{ page.research_interest.title }}</h2>
+  {% if page.research_interest.items %}
+  <div class="research-interest-list-wrap">
+    <ul class="research-interest-list">
+      {% for item in page.research_interest.items %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}

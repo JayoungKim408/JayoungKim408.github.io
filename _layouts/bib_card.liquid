@@ -1,0 +1,83 @@
+---
+---
+{% assign proceedings = 'inproceedings,incollection' | split: ',' %}
+{% if entry.type == 'article' %}
+  {% assign publisher = entry.journal %}
+{% elsif proceedings contains entry.type %}
+  {% assign publisher = entry.booktitle %}
+{% else %}
+  {% assign publisher = entry.booktitle | default: entry.journal | default: '' %}
+{% endif %}
+{% if entry.abbr != blank %}
+  {% assign venue_short = entry.abbr %}
+{% else %}
+  {% assign venue_short = publisher %}
+{% endif %}
+
+<div class="selected-paper-card-inner">
+  <div class="selected-paper-year">{{ entry.year }}</div>
+  <div class="selected-paper-tags">
+    <span class="selected-paper-tag">{{ venue_short }}</span>
+  </div>
+  <div class="selected-paper-title">{{ entry.title }}</div>
+  <div class="selected-paper-authors">
+    {% assign author_limit = 5 %}
+    {% assign author_array_size = entry.author_array | size %}
+    {% if site.max_author_limit and site.max_author_limit < author_limit %}
+      {% assign author_limit = site.max_author_limit %}
+    {% endif %}
+    {% assign author_limit = author_array_size | min: author_limit %}
+    {% for author in entry.author_array limit: author_limit %}
+      {% assign author_last_name = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' %}
+      {% assign author_last_html = author.last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' %}
+      {% if site.scholar.last_name contains author_last_name and site.scholar.first_name contains author.first %}
+        <strong><em><u>{{ author.first }} {{ author_last_html }}</u></em></strong>{% unless forloop.last %}, {% endunless %}
+      {% else %}
+        {{ author.first }} {{ author_last_html }}{% unless forloop.last %}, {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% assign more = author_array_size | minus: author_limit %}
+    {% if more > 0 %}
+      , and {{ more }} more
+    {% endif %}
+  </div>
+  {% if entry.summary %}
+  <div class="selected-paper-summary">{{ entry.summary }}</div>
+  {% endif %}
+  {% if entry.tags %}
+  {% assign tag_list = entry.tags | split: "," %}
+  <div class="selected-paper-keyword-tags">
+    {% for tag in tag_list %}
+    {% assign tag_trimmed = tag | strip %}
+    {% if tag_trimmed != "" %}
+    <span class="selected-paper-tag selected-paper-tag--keyword">{{ tag_trimmed }}</span>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if entry.abstract or entry.arxiv or entry.pdf or entry.code %}
+  <div class="selected-paper-links">
+    {% if entry.abstract %}
+    <a class="abstract btn btn-sm z-depth-0" role="button">ABS</a>
+    {% endif %}
+    {% if entry.arxiv %}
+    <a href="https://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">arXiv</a>
+    {% endif %}
+    {% if entry.pdf %}
+      {% if entry.pdf contains '://' %}
+    <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">PDF</a>
+      {% else %}
+    <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">PDF</a>
+      {% endif %}
+    {% endif %}
+    {% if entry.code %}
+    <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">Code</a>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if entry.abstract %}
+  <div class="abstract hidden">
+    <p>{{ entry.abstract }}</p>
+  </div>
+  {% endif %}
+</div>

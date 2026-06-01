@@ -1,0 +1,78 @@
+<nav class="about-sidebar" aria-label="Page sections">
+  <ul class="about-sidebar__list">
+    <li>
+      <a href="#intro" class="about-sidebar__link" data-target="intro">
+        <span class="about-sidebar__dot" aria-hidden="true"></span>
+        <span class="about-sidebar__label">Intro</span>
+      </a>
+    </li>
+    {% if page.news_section and page.news_section.items.size > 0 %}
+    <li>
+      <a href="#news" class="about-sidebar__link" data-target="news">
+        <span class="about-sidebar__dot" aria-hidden="true"></span>
+        <span class="about-sidebar__label">News</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if page.selected_papers %}
+    <li>
+      <a href="#publications" class="about-sidebar__link" data-target="publications">
+        <span class="about-sidebar__dot" aria-hidden="true"></span>
+        <span class="about-sidebar__label">Selected publications</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+<script>
+  (function () {
+    const links = Array.from(document.querySelectorAll('.about-sidebar__link'));
+    const sections = links
+      .map(l => ({ link: l, el: document.getElementById(l.dataset.target) }))
+      .filter(x => x.el);
+    if (!sections.length) return;
+
+    function setActive(id) {
+      links.forEach(l => l.classList.toggle('is-active', l.dataset.target === id));
+    }
+
+    function currentSection() {
+      const scrollY = window.scrollY;
+      const probe = scrollY + window.innerHeight * 0.3;
+      let active = sections[0];
+      for (const s of sections) {
+        const top = s.el.getBoundingClientRect().top + scrollY;
+        if (top <= probe) active = s;
+      }
+      return active;
+    }
+
+    function update() {
+      setActive(currentSection().link.dataset.target);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const el = document.getElementById(link.dataset.target);
+        if (!el) return;
+        const navOffset = 70;
+        const top = el.getBoundingClientRect().top + window.scrollY - navOffset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        history.replaceState(null, '', '#' + link.dataset.target);
+        setActive(link.dataset.target);
+      });
+    });
+
+    const initial = window.location.hash.replace('#', '');
+    if (initial && document.getElementById(initial)) {
+      setActive(initial);
+    } else {
+      update();
+    }
+  })();
+</script>
