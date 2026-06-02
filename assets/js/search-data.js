@@ -54,6 +54,9 @@ ninja.data = [{
           section: "News",},{id: "news-our-patent-on-neural-ode-based-conditional-tabular-data-generation-was-registered-korean-patent-no-10-2839821",
           title: 'Our patent on Neural ODE-based Conditional Tabular Data Generation was registered (Korean Patent...',
           description: "",
+          section: "News",},{id: "news-adversarial-robustness-of-implicit-neural-representation-based-classifiers-was-accepted-to-icml-2026",
+          title: 'Adversarial Robustness of Implicit Neural Representation-Based Classifiers was accepted to ICML 2026.',
+          description: "",
           section: "News",},{
         id: 'social-cv',
         title: 'CV',
