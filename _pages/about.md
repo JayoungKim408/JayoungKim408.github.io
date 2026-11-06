@@ -27,9 +27,6 @@ news_section:
     - date: "2026"
       tag: "ICML 2026"
       description: "***Adversarial Robustness of Implicit Neural Representation-Based Classifiers*** was accepted to **ICML 2026**."
-    - date: "Jul 2025"
-      tag: "Patent Granted"
-      description: "Our patent on *Neural ODE-based Conditional Tabular Data Generation* was registered (Korean Patent No. 10-2839821)."
     - date: "Sep 2024"
       tag: "New Chapter"
       description: "Started my Ph.D. in the School of Computing at **KAIST**, advised by **Prof. Noseong Park**."
@@ -52,5 +49,3 @@ More specifically, my current interests include:
 {% include research_interest_inline.liquid %}
 
 Before joining KAIST, I received my M.S. in Artificial Intelligence from Yonsei University (advised by Prof. Noseong Park), where my thesis *STaSy: Score-based Tabular Data Synthesis* was published as a Spotlight paper at ICLR 2023. I completed my B.S. in Computer Science and Statistics at Sookmyung Women's University.
-
-You are always welcome to reach out — the best way to contact me is by [email](mailto:jayoung.kim@kaist.ac.kr).
